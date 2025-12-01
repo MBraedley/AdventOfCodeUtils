@@ -3,7 +3,7 @@ from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
 
 class AdventOfCodeUtils(ConanFile):
     name = "aoc_utils"
-    version = "1.0.0"
+    version = "1.0.1"
     settings = "os", "compiler", "build_type", "arch"
     package_type = "static_library"
 
@@ -32,7 +32,7 @@ class AdventOfCodeUtils(ConanFile):
         cmake.install()
         
     def package_info(self):
-        self.cpp_info.components["Utils"].set_property("cmake_target_name", f"{self.name}::{"Utils"}")
+        self.cpp_info.components["Utils"].set_property("cmake_target_name", f"{self.name}::Utils")
         self.cpp_info.components["Utils"].libs = [ "Utils" ]
         self.cpp_info.components["Utils"].requires = [ "ctre::ctre" ]
     
