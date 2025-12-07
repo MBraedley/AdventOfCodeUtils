@@ -5,7 +5,7 @@ class AdventOfCodeUtils(ConanFile):
     name = "aoc_utils"
     version = "1.0.1"
     settings = "os", "compiler", "build_type", "arch"
-    package_type = "static_library"
+    package_type = "static-library"
 
     # Sources are located in the same place as this recipe, copy them to the recipe
     exports_sources = "CMakeLists.txt", "src/*"

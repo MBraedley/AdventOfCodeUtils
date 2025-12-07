@@ -37,15 +37,15 @@ namespace utils
 	namespace detail
 	{
 		template<std::size_t... indices>
-		constexpr auto GetMatchesHelper( auto matchResults, std::index_sequence<indices...> ) -> std::array<std::string_view, sizeof...(indices)>
+		constexpr auto GetMatchesHelper(auto matchResults, std::index_sequence<indices...>) -> std::array<std::string_view, sizeof...(indices)>
 		{
-			return { { matchResults.get<indices>().view()...}};
+			return { { matchResults.get<indices>().view()...} };
 		}
 
 		template<std::size_t count>
-		constexpr std::array<std::string_view, count> GetMatches( auto matchResults )
+		constexpr std::array<std::string_view, count> GetMatches(auto matchResults)
 		{
-			return GetMatchesHelper( matchResults, std::make_index_sequence<count>{} );
+			return GetMatchesHelper(matchResults, std::make_index_sequence<count>{});
 		}
 	}
 
@@ -58,17 +58,17 @@ namespace utils
 	constexpr std::vector<std::vector<std::string>> ReadFormattedInput(const std::filesystem::path& input)
 	{
 		auto matcher = ctre::match<Regex>;
-		
+
 		std::vector<std::vector<std::string>> ret;
 		std::ifstream istrm(input);
 		std::string line;
 		while (std::getline(istrm, line))
 		{
 			auto results = matcher(line);
-			if ( results )
+			if (results)
 			{
 				auto matches = detail::GetMatches<results.count()>(results);
-				ret.emplace_back( matches.begin(), matches.end() );
+				ret.emplace_back(matches.begin(), matches.end());
 			}
 		}
 
@@ -78,6 +78,24 @@ namespace utils
 	std::vector<std::string> Tokenize(const std::string& str, char delim);
 
 	std::vector<std::string> Transpose(const std::vector<std::string>& grid);
+
+	template<typename T>
+	std::vector<std::vector<T>> Transpose(const std::vector<std::vector<T>>& grid)
+	{
+		std::vector<std::vector<T>> ret;
+
+		for (std::size_t x = 0; x < grid[0].size(); x++)
+		{
+			std::vector<T> s;
+			for (std::size_t y = 0; y < grid.size(); y++)
+			{
+				s.push_back(grid[y][x]);
+			}
+			ret.push_back(s);
+		}
+
+		return ret;
+	}
 
 	void PrintGrid(const std::vector<std::string>& grid);
 
