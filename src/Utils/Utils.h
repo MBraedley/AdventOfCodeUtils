@@ -212,3 +212,4 @@ constexpr utils::Pos operator%(const utils::Pos& lhs, const utils::Pos& rhs)
 }
 
 std::ostream& operator<<( std::ostream& os, const utils::Pos& p );
+std::istream& operator>>( std::istream& is, utils::Pos& p );

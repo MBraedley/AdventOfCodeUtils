@@ -3,7 +3,7 @@ from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
 
 class AdventOfCodeUtils(ConanFile):
     name = "aoc_utils"
-    version = "1.0.1"
+    version = "1.0.2"
     settings = "os", "compiler", "build_type", "arch"
     package_type = "static-library"
 

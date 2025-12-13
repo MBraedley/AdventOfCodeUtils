@@ -193,3 +193,10 @@ std::ostream& operator<<( std::ostream& os, const utils::Pos& p )
 {
 	return os << p.X << "," << p.Y;
 }
+
+std::istream& operator>>(std::istream& is, utils::Pos& p)
+{
+	//Standard format is "XX,YY"
+	char c;
+	return is >> p.X >> c >> p.Y;
+}
